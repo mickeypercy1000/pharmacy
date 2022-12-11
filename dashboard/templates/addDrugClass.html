@@ -1,0 +1,48 @@
+{% load static %}
+
+{% include 'base.html' %}
+
+<div class="right_col" role="main">
+    <div class="">
+
+      <div class="clearfix"></div>
+
+          <div class="x_panel">
+            
+            <div class="x_content">
+                <div class="x_panel">
+                    <div class="x_title">
+                        <h2>Add a drug class</small></h2>
+
+                        <div class="clearfix"></div>
+                    </div>
+                    <div class="x_content mt-4">
+
+                        <!-- start form for validation -->
+                        <form id="demo-form" data-parsley-validate method = 'POST' action="">
+                            {% csrf_token %}
+                            <label for="fullname">Item Name *</label>
+                            <input type="text" id="class_name" class="form-control" name="class_name" required />
+                                    
+                            <br />
+                            <button class="btn btn-primary" type = "submit">Add item</button>
+                            <a class="btn btn-outline-secondary ml-3" href="{% url 'stock'%}">Got to stock items</a>
+
+                        </form>
+                        <!-- end form for validations -->
+
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+  </div>
+
+  <script src="{% static 'vendors/jquery/dist/jquery.min.js' %}"></script>
+  <!-- Bootstrap -->
+ <script src="{% static 'vendors/bootstrap/dist/js/bootstrap.bundle.min.js' %}"></script>
+  <script src="{% static 'vendors/fastclick/lib/fastclick.js ' %}"></script>
+  <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
+  
+  <!-- Custom Theme Scripts -->
+  <script src="{% static 'build/js/custom.min.js' %}"></script>

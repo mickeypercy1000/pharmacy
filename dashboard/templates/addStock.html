@@ -1,0 +1,62 @@
+{% comment %} {% load static %}
+
+{% include 'base.html' %}
+
+
+<div class="right_col" role="main">
+    <div class="">
+
+        <div class="clearfix"></div>
+            <div class="x_panel">
+                <div class="x_content">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>Add a new item</small></h2>
+
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content mt-4">
+
+                            <form id="demo-form" method = 'POST' action="">
+                                {% csrf_token %}
+                                <label for="">Item Name *</label>
+                                <input type="text" class="form-control" name="item_name"  />
+
+                                <label for="heard" class="mt-2">Item Class</label>
+                                <select name = "item_class" class="form-control" required>
+                                    <option value=""></option>
+                                    {% for classes in drug_class %}
+                                    <option value="{{ classes.name }}">{{ classes.name }}</option>
+                                    {% endfor %}
+                                </select>
+
+                                <label for="" class="mt-2">Maximum Quantity *</label>
+                                <input type="number" class="form-control" name="maximum_quantity" required />
+
+                                <label for="" class="mt-2">Reordered Quantity *</label>
+                                <input type="number" class="form-control" name="reorder_quantity" required />
+
+                                <label for="" class="mt-2">Shelf Number *</label>
+                                <input type="text" class="form-control" name="shelf_number" required />
+
+                                <label for="heard" class="mt-2">Status</label>
+                                <select name = "status" class="form-control" required>
+                                    <option value="Active">Activate</option>
+                                    <option value="Inactive">Deactivate</option>
+                                </select>
+
+                                <br />
+                                <button class="btn btn-primary" type="submit">Add item</button>
+                                <a class="btn btn-outline-secondary ml-3" href="{% url 'stock' %}">Go to stock items</a>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+    </div>
+  </div>
+  
+  {% include 'footer.html' %}
+   {% endcomment %}
