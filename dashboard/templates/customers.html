@@ -1,0 +1,156 @@
+{% include 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content-wrapper">
+ <!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Customers /</span> All Customers</h4>
+<div class="card">
+  
+  
+  <div class="table-responsive text-nowrap">
+    <div class = "row">
+        <div class="col-md-5">
+            <button type="button" class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#modalAddSupplier"><b>+</b> Add new customer</button>
+        </div>
+        <div class="col-md-3">
+            <div class="btn-group m-4" role="group" aria-label="Basic example">
+                <button type="button" class="btn btn-outline-secondary">Excel</button>
+                <button type="button" class="btn btn-outline-secondary">PDF</button>
+                <button type="button" class="btn btn-outline-secondary">Print</button>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Search customer..." class = "form-control m-4">
+        </div>
+    </div>
+    <div class="modal fade" id="modalAddCustomer" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Add A New Customer</h5>
+                    <button
+                        type="button"
+                        class="btn-close m-4"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
+                </div>
+                <form method = 'POST' action="">
+                    {% csrf_token %}
+                    <div class="modal-body">            
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Name</label>
+                                <input
+                                    type="text"
+                                    id="customer_name"
+                                    class="form-control"
+                                    name="customer_name"
+                                    required = "true"
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nameWithTitle" class="form-label">Address</label>
+                                <input
+                                    type="text"
+                                    id="customer_address"
+                                    class="form-control"
+                                    name="customer_address"
+                                    required = "true"
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nameWithTitle" class="form-label">Phone</label>
+                                <input
+                                    type="text"
+                                    id="customer_phone"
+                                    class="form-control"
+                                    name="customer_phone"
+                                    required = "true"
+                                />
+                            </div>  
+                            
+                            <div class="mb-3">
+                                <label for="nameWithTitle" class="form-label">ID Card Number</label>
+                                <input
+                                    type="text"
+                                    id="id_card_number"
+                                    class="form-control"
+                                    name="id_card_number"
+                                    required = "true"
+                                />
+                            </div>
+
+                            {% comment %} <div class="mb-3">
+                                <label for="nameWithTitle" class="form-label">Upload Picture</label>
+                                <input
+                                    type="file"
+                                    id="id_card_number"
+                                    class="form-control"
+                                    name="id_card_number"
+                                    required = "false"
+                                />
+                            </div> {% endcomment %}
+
+                        </div>              
+                        <div class="modal-footer">
+                        
+                            <button type="submit" class="btn btn-primary"> Save</button>
+                            <button type="submit" class="btn btn-primary"> Save and add another</button>
+                        </div>
+                    </div>
+                </form>
+          </div>
+        </div>
+    </div>   
+
+      <table class="table table-hover" id = "table" data-filter-control="true" data-show-search-clear-button="true">
+        <thead>
+          <tr id='tableHeader'>
+            <th>Customer Name</th>
+            <th>Address</th>
+            <th>Phone</th>
+            <th>ID Card Number</th>
+            <th>Created By</th>
+            <th>Date Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody class="table-border-bottom-0">
+            {% for customer in all_customers %}
+            <tr>
+                <td>{{customer.name}}</td>
+                <td>{{customer.address}}</td>
+                <td>{{customer.phone}}</td>
+                <td>{{customer.id_card_number}}</td>
+                <td>{{customer.created_by}}</td>
+                <td>{{customer.created_at}}</td>
+                <td>
+                    <span class = "mr-3">
+                    <a href = "{% url 'update-customer' customer.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href = ""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    </span>
+                </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  </div>
+  </div>
+
+  {% endblock %}
+
+  {% include 'footer.html' %}
+  <!-- / Footer -->
+
+{% include 'extraCode.html' %}
+
+{% include 'scripts.html' %}

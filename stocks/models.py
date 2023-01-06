@@ -17,9 +17,9 @@ class DrugClass(models.Model):
 
 
 class Stock(models.Model):
-    status = (
-        ('Active','active'),
-        ('Inactive','inactive'),
+    Status = (
+        ('active','Active'),
+        ('inactive','Inactive'),
     )
     name = models.CharField(max_length=20)
     item_class = models.ForeignKey(DrugClass, on_delete = models.CASCADE, max_length=20, null = True, blank = True, default=None)
@@ -27,7 +27,7 @@ class Stock(models.Model):
     reorder_quantity = models.IntegerField(null = True, blank = True, default=None)
     shelf_number = models.CharField(max_length=20, null = True, blank = True, default=None)
     expiry_date = models.DateField(null = True, blank = True)
-    status = models.CharField(choices = status, max_length=20, null = True, blank = True, default=None)
+    status = models.CharField(choices = Status, max_length=20, null = True, blank = True, default=None)
     deleted = models.BooleanField(default=False, null = False, blank = False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)

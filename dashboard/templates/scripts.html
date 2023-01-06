@@ -11,3 +11,105 @@
 <script src="{% static 'assets/js/main.js' %}"></script>
 
 <script src="{% static 'assets/js/dashboards-analytics.js' %}"></script>
+<script src="{% static 'assets/js/ui-toasts.js' %}"></script>
+
+<script src = "{% static 'datatable/js/jquery-3.2.1.js' %}"></script>
+<script src = "{% static 'datatable/js/jquery.dataTables.js' %}"></script>
+<script src = "{% static 'datatable/js/jquery.dataTables.min.js' %}"></script>
+<script src = "{% static 'datatable/js/dataTables.buttons.min.js' %}"></script>
+<script src = "{% static 'datatable/js/buttons.print.min.js' %}"></script>
+<script type = "text/javascript">
+    $(document).ready(function(){
+        $('#table').DataTable({
+            language: {
+                searchPlaceholder: "Search...",
+                search: "",
+                },
+            "lengthChange":false,
+            "info": false,
+            "searching": false,
+            
+        });
+    });
+</script>
+
+
+
+<script>
+    function tableSearch() {
+     var input, filter, found, table, tr, td, i, j;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("table");
+        tr = table.getElementsByTagName("tr");
+        for (i = 0; i < tr.length; i++) {
+            td = tr[i].getElementsByTagName("td");
+            for (j = 0; j < td.length; j++) {
+                if (td[j].innerHTML.toUpperCase().indexOf(filter) > -1) {
+                    found = true;
+                }
+            }
+            if (found) {
+                tr[i].style.display = "";
+                found = false;
+            } else {
+                 if (tr[i].id != 'tableHeader'){tr[i].style.display = "none";}
+            }
+            
+        }
+    }
+</script>
+
+
+<script>
+
+    /**
+* Exporting Table Data into Excel
+*/
+
+document.getElementById("exportTableXls").addEventListener("click", function(e){
+    e.preventDefault()
+    var _tbl = document.getElementById('table').outerHTML
+    var excel_content = `<html><body>${_tbl}</body></html>`
+    var file = new Blob([excel_content], {type:'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'});
+    var dl_anchor = document.createElement('a')
+    dl_anchor.style.display = this.nonce;
+    dl_anchor.download = "tableData.xls";
+    dl_anchor.href = window.URL.createObjectURL(file);
+    document.body.appendChild(dl_anchor)
+    dl_anchor.click()
+})
+</script>
+
+
+<script>
+/**
+* Exporting Table Data into CSV
+*/
+
+document.getElementById("exportTableCSV").addEventListener("click", function(e){
+    e.preventDefault()
+    var _tbl_rows = document.querySelectorAll('#table tr')
+    var csv ="";
+    var rows = []
+    _tbl_rows.forEach(el => {
+        var row = []
+        el.querySelectorAll('th, td').forEach(ele => {
+            var ele_clone = ele.cloneNode(true)
+            ele_clone.innerText = (ele_clone.innerText).replace(/\"/gi, '\"\"')
+            ele_clone.innerText = ('"' + ele_clone.innerText + '"')
+            row.push(ele_clone.innerText)
+        })
+        rows.push(row.join(","));
+    })
+    csv += rows.join(`\r\n`)
+    var file = new Blob([csv], {type:'text/csv'});
+    var dl_anchor = document.createElement('a')
+    dl_anchor.style.display = this.nonce;
+    dl_anchor.download = "tableCsv.csv";
+    dl_anchor.href = window.URL.createObjectURL(file);
+    document.body.appendChild(dl_anchor)
+    dl_anchor.click()
+
+})
+</script>
