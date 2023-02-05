@@ -14,13 +14,14 @@
   <div class="table-responsive text-nowrap">
     <div class = "row">
         <div class="col-md-5">
-            <button type="button" class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#modalAddSupplier"><b>+</b> Add new customer</button>
+            <button type="button" class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#modalAddCustomer"><b>+</b> Add new customer</button>
         </div>
         <div class="col-md-3">
             <div class="btn-group m-4" role="group" aria-label="Basic example">
-                <button type="button" class="btn btn-outline-secondary">Excel</button>
-                <button type="button" class="btn btn-outline-secondary">PDF</button>
-                <button type="button" class="btn btn-outline-secondary">Print</button>
+                <button type="button" class="btn btn-outline-secondary" id = "exportTableXlsx" >Excel</button>
+                <button type="button" class="btn btn-outline-secondary" id = "exportTableCSV">CSV</button>
+                <button type="button" class="btn btn-outline-secondary" id = "exportTablePDF">PDF</button>
+                <button type="button" class="btn btn-outline-secondary" id = "printButton">Print</button>
             </div>
         </div>
         <div class="col-md-3">
@@ -102,7 +103,6 @@
                         <div class="modal-footer">
                         
                             <button type="submit" class="btn btn-primary"> Save</button>
-                            <button type="submit" class="btn btn-primary"> Save and add another</button>
                         </div>
                     </div>
                 </form>
@@ -134,7 +134,7 @@
                 <td>
                     <span class = "mr-3">
                     <a href = "{% url 'update-customer' customer.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href = ""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href = "{% url 'delete-customer' customer.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </span>
                 </td>
             </tr>

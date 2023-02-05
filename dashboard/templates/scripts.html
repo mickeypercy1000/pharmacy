@@ -18,7 +18,7 @@
 <script src = "{% static 'datatable/js/jquery.dataTables.min.js' %}"></script>
 <script src = "{% static 'datatable/js/dataTables.buttons.min.js' %}"></script>
 <script src = "{% static 'datatable/js/buttons.print.min.js' %}"></script>
-<script type = "text/javascript">
+{% comment %} <script type = "text/javascript">
     $(document).ready(function(){
         $('#table').DataTable({
             language: {
@@ -31,7 +31,7 @@
             
         });
     });
-</script>
+</script> {% endcomment %}
 
 
 
@@ -67,7 +67,7 @@
 * Exporting Table Data into Excel
 */
 
-document.getElementById("exportTableXls").addEventListener("click", function(e){
+document.getElementById("exportTableXlsx").addEventListener("click", function(e){
     e.preventDefault()
     var _tbl = document.getElementById('table').outerHTML
     var excel_content = `<html><body>${_tbl}</body></html>`
@@ -112,4 +112,58 @@ document.getElementById("exportTableCSV").addEventListener("click", function(e){
     dl_anchor.click()
 
 })
+</script>
+
+
+<script>
+document.getElementById("printButton").addEventListener("click", function(e){
+    e.preventDefault()
+    var table = document.getElementById("table");
+
+    // Loop through the rows and cells of the table
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j <sc table.rows[i].cells.length; j++) {
+            // Print the content of each cell
+            console.log(table.rows[i].cells[j].innerHTML);
+        }
+    }
+})
+</script>
+
+
+
+<script>
+    const jsPDF = require('jspdf');
+
+// Get the table by its id
+    var table = document.getElementById("table");
+
+    // Get the button by its id
+    var exportButton = document.getElementById("exportTablePDF");
+
+    // Add an event listener to the button
+    exportButton.addEventListener("click", function(){
+
+    // Create a new jsPDF object
+    var doc = new jsPDF();
+
+    // Loop through the rows and cells of the table
+    for (var i = 0; i < table.rows.length; i++) {
+        for (var j = 0; j < table.rows[i].cells.length; j++) {
+            // Add the content of each cell to the PDF
+            doc.cell(10, 10, table.rows[i].cells[j].innerHTML);
+        }
+    }
+
+    // Save the PDF
+    doc.save('table.pdf');
+});
+</script>
+
+
+<script>
+    item_details = document.getElementById('salesItemTextfield');
+    function searchItemDetails(){
+        console.log("hey there")
+    }
 </script>

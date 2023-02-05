@@ -2,8 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
-class DrugClass(models.Model):
-    name = models.CharField(max_length=100, null=True, blank=True)
+class ItemClass(models.Model):
+    name = models.CharField(max_length=250, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -17,17 +17,21 @@ class DrugClass(models.Model):
 
 
 class Stock(models.Model):
+
     Status = (
-        ('active','Active'),
-        ('inactive','Inactive'),
+        ('active', 'Active'),
+        ('inactive', 'Inactive')
     )
-    name = models.CharField(max_length=20)
-    item_class = models.ForeignKey(DrugClass, on_delete = models.CASCADE, max_length=20, null = True, blank = True, default=None)
+    name = models.CharField(max_length=250)
+    item_class = models.ForeignKey(ItemClass, on_delete = models.CASCADE, max_length=20, null = True, blank = True, default=None)
     maximum_quantity = models.IntegerField(null = True, blank = True, default=None)
     reorder_quantity = models.IntegerField(null = True, blank = True, default=None)
+    quantity = models.IntegerField(null = True, blank = True, default=None)
+    selling_price = models.DecimalField(max_digits = 10, decimal_places =2, null = True, blank = True, default=None)
+    cost_price = models.DecimalField(max_digits = 10, decimal_places =2, null = True, blank = True, default=None)
     shelf_number = models.CharField(max_length=20, null = True, blank = True, default=None)
     expiry_date = models.DateField(null = True, blank = True)
-    status = models.CharField(choices = Status, max_length=20, null = True, blank = True, default=None)
+    status = models.CharField(choices=Status, max_length=20, null = True, blank = True, default=None)
     deleted = models.BooleanField(default=False, null = False, blank = False)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
@@ -45,4 +49,22 @@ class ExpiryAlert(models.Model):
     created_at = models.DateTimeField(auto_now_add=True, null = True, blank = True)
     updated_at = models.DateTimeField(auto_now = True, null = True, blank = True)
     created_by = models.ForeignKey(User, on_delete = models.SET_NULL, blank=True, null=True)
+
+
+    def __str__(self):
+        return self.expiry_alert + ' month(s)'
+
+    class Meta:
+        ordering = ('-expiry_alert',)
+
+
+
+class StockAdjustment(models.Model):
+    name = models.ForeignKey(Stock, on_delete = models.DO_NOTHING, related_name = 'stock_adjustments')
+    current_quantity = models.ForeignKey(Stock, on_delete =models.DO_NOTHING, related_name = 'old_quantity')
+    new_quantity = models.ForeignKey(Stock, on_delete =models.DO_NOTHING, related_name = 'new_quantity')
+    reason = models.TextField()
+    created_by = models.ForeignKey(User, blank=True, null=True, on_delete = models.SET_NULL)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 

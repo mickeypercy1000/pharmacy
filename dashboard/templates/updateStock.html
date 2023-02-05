@@ -7,12 +7,12 @@
 <div class="content-wrapper">
  <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Stock /</span> Add New Item</h4>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Stock /</span> Update Stock</h4>
 
         <div class="modal-dialog modal-lg" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCenterTitle">Add Stock</h5>
+                    <h5 class="modal-title" id="modalCenterTitle">Update Stock</h5>
                     
                 </div>
                 <form method = 'POST' action="">
@@ -28,12 +28,13 @@
                                 placeholder="Enter Name"
                                 name="item_name"
                                 required = "true"
+                                value = {{stock.name}}
                                 />
                             </div>
                         </div>
                         <div class="mb-3">
                             <label for="defaultSelect" class="form-label">Select Item Group</label>
-                            <select id="defaultSelect" class="form-select" name = "select_item_group" required = "true">
+                            <select id="defaultSelect" class="form-select" name = "select_item_group" required = "true" value = "{{stock.item_class}}">
                                 <option>Default select</option>
                                 {% for classes in all_drug_class %}
                                 <option value="{{ classes.name }}">{{ classes.name }}</option>
@@ -51,6 +52,7 @@
                                 placeholder="Enter a quantity"
                                 name="maximum_quantity"
                                 required = "true"
+                                value = "{{ stock.maximum_quantity }}"
                                 />
                             </div>
                             <div class="col mb-3">
@@ -62,6 +64,8 @@
                                 placeholder="Enter a quantity"
                                 name="reorder_quantity"
                                 required = "true"
+                                value = "{{ stock.reorder_quantity }}"
+
                                 />
                             </div>
                         </div>
@@ -75,6 +79,8 @@
                                 class="form-control"
                                 placeholder="Enter a quantity"
                                 name="item_quantity"
+                                value = "{{ stock.quantity }}"
+
                                 />
                             </div>
                             <div class="col mb-3">
@@ -85,6 +91,8 @@
                                 class="form-control"
                                 placeholder="select expiry date"
                                 name="expiry_date"
+                                value = "{{ stock.expiry_date }}"
+
                                 />
                             </div>
                         </div>
@@ -97,6 +105,8 @@
                                 class="form-control"
                                 placeholder="selling price"
                                 name="selling_price"
+                                value = "{{ stock.selling_price }}"
+
                                 />
                             </div>
                             <div class="col mb-3">
@@ -107,6 +117,8 @@
                                 class="form-control"
                                 placeholder="cost price"
                                 name="cost_price"
+                                value = "{{ stock.cost_price }}"
+
                                 />
                             </div>
                           
@@ -121,13 +133,15 @@
                               class="form-control"
                               placeholder="Enter shelf number"
                               name="shelf_number"
+                              value = "{{ stock.shelf_number }}"
+
                             />
                           </div>
                         </div>
       
                         <div class="mb-3">
                           <label for="defaultSelect" class="form-label">Status</label>
-                          <select id="defaultSelect" class="form-select" name = "select_item_status" required = "true">
+                          <select id="defaultSelect" class="form-select" name = "select_item_status" required = "true" value = "{{ stock.status}}">
                             <option value = "Active">Activate</option>
                             <option value = "Inactive">Disabled</option>Deactivate</option>
                             

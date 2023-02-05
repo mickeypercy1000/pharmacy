@@ -7,169 +7,178 @@
 <div class="content-wrapper">
  <!-- Content -->
 <div class="container-xxl flex-grow-1 container-p-y">
-<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sales /</span> All Sales</h4>
-<div class="card">
-  
-  
-  <div class="table-responsive text-nowrap">
-      <button type="button" class="btn btn-success m-4" data-bs-toggle="modal" data-bs-target="#modalMakeSales">Make a new sale</button>
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Sales / </span>New Sale</h4>
 
-      <div class="modal fade" id="modalMakeSales" tabindex="-1" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modalCenterTitle">Add a new item</h5>
-              <button
-                type="button"
-                class="btn-close m-4"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
+<div class="row mt-5">
+
+    <div class = "row">
+
+            <div class="col mb-3 col-md-5">
+                <label for="nameWithTitle" class="form-label">Item Name</label>
+                <input
+                    type="text"
+                    id="salesItemTextfield"
+                    class="form-control"
+                    placeholder="Enter Name"
+                    name="name"
+                    onchange="searchItemDetails()"
+                />
             </div>
-            <form method = 'POST' action="">
-              {% csrf_token %}
-              <div class="modal-body">
-                  <div class="row">
-                    <div class="col mb-3">
-                      <label for="nameWithTitle" class="form-label">Name</label>
-                      <input
-                        type="text"
-                        id="nameWithTitle"
-                        class="form-control"
-                        placeholder="Enter Name"
-                        name="name"
-                      />
-                    </div>
-                  </div>
-                  <div class="mb-3">
-                    <label for="defaultSelect" class="form-label">Select Item Group</label>
-                    <select id="defaultSelect" class="form-select" name = "item_group">
-                      <option>Default select</option>
-                      {% for classes in drug_class %}
-                        <option value="{{ classes.name }}">{{ classes.name }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                  <div class="mb-3">
-                    <label for="defaultSelect" class="form-label">Select Supplier</label>
-                    <select id="defaultSelect" class="form-select" name = "supplier">
-                      <option>Default select</option>
-                      {% for supplier in suppliers %}
-                        <option value="{{ supplier.name }}">{{ supplier.name }}</option>
-                      {% endfor %}
-                    </select>
-                  </div>
-                  <div class="row">
-                    <div class="col mb-3">
-                      <label for="nameWithTitle" class="form-label">Maximum Quantity</label>
-                      <input
-                        type="number"
-                        id="nameWithTitle"
-                        class="form-control"
-                        placeholder="Enter a quantity"
-                        name="maximum_quantity"
-                      />
-                    </div>
-                    <div class="col mb-3">
-                      <label for="nameWithTitle" class="form-label">Reorder Level</label>
-                      <input
-                        type="number"
-                        id="nameWithTitle"
-                        class="form-control"
-                        placeholder="Enter a quantity"
-                        name="reorder_quantity"
-                      />
-                    </div>
-                  </div>
+        
+
+            <div class="col mb-3 col-md-2">
+                <label for="nameWithTitle" class="form-label">Quantity</label>
+                <input
+                    type="number"
+                    id="nameWithTitle"
+                    class="form-control"
+                    placeholder="Enter a quantity"
+                    name="name"
+                />
+            </div>
+
+
+            <div class="col mb-3 col-md-2">
+                <label for="nameWithTitle" class="form-label">Unit Cost</label>
+                <input
+                    id="nameWithTitle"
+                    class="form-control"
+                    name="name"
+                    disabled = "true"
+
+                />
+            </div>
+
+
+            <div class="col mb-3 col-md-2">
+                <label for="nameWithTitle" class="form-label">Total Cost</label>
+                <input
+                    id="nameWithTitle"
+                    class="form-control"
+                    name="name"
+                    disabled = "true"
+
+                />
+            </div>
+
+
+            <div class="col col-md-1">
+                <label for="nameWithTitle" class="form-label">Action</label>
+                <button type="submit" class="btn btn-primary form-control"> Add</button>
+            </div>
+
+
+    </div>
+
+
+</div>
+
+
+<div class="card mt-5">
+<br />
+
+  <div class="table-responsive text-nowrap">
+        <div class = "row">
+            <div class="col-md-5">
+                <button type="button" class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#modalAddSupplier"><b>+</b> Add new supplier</button>
                 
-                  <div class="row">
-                    <div class="col mb-3">
-                      <label for="nameWithTitle" class="form-label">Quantity</label>
-                      <input
-                        type="number"
-                        id="nameWithTitle"
-                        class="form-control"
-                        placeholder="Enter a quantity"
-                        name="quantity"
-                      />
-                    </div>
-                    <div class="col mb-3">
-                      <label for="nameWithTitle" class="form-label">Expiry Date</label>
-                      <input
-                        type="date"
-                        id="nameWithTitle"
-                        class="form-control"
-                        placeholder="select expiry date"
-                        name="expiry_date"
-                      />
-                    </div>
-                  </div>
+            </div>
 
-                  <div class="row">
-                    <div class="col mb-3">
-                      <label for="nameWithTitle" class="form-label">Shelf Number</label>
-                      <input
-                        type="text"
-                        id="nameWithTitle"
-                        class="form-control"
-                        placeholder="Enter shelf number"
-                        name="shelf_number"
-                      />
-                    </div>
-                  </div>
+            <div class="col-md-3">
+                <div class="btn-group m-4" role="group" aria-label="Basic example">
+                    <button type="button" class="btn btn-outline-secondary" id = "exportTableXls" >Excel</button>
+                    <button type="button" class="btn btn-outline-secondary" id = "exportTablePDF">PDF</button>
+                    <button type="button" class="btn btn-outline-secondary">Print</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <input type="text" id="myInput" onkeyup='tableSearch()' placeholder="Search sales..." class = "form-control m-4">
+            </div>
+        </div>
 
-                  <div class="form-check form-switch mb-2">
-                    <input class="form-check-input" type="checkbox" id="flexSwitchCheckChecked" checked />
-                    <label class="form-check-label" for="flexSwitchCheckChecked"
-                      >Active</label
-                    >
-                  </div>
-                  
+    <div class="modal fade" id="modalAddSupplier" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Add A New Supplier</h5>
+                    <button
+                        type="button"
+                        class="btn-close m-4"
+                        data-bs-dismiss="modal"
+                        aria-label="Close"
+                    ></button>
                 </div>
-                <div class="modal-footer">
-                  <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
-                    Close
-                  </button>
-                  <button type="submit" class="btn btn-primary"> Save and add another</button>
-                </div>
-            </form>
+                <form method = 'POST' action="">
+                    {% csrf_token %}
+                    <div class="modal-body">            
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Name</label>
+                                <input
+                                    type="text"
+                                    id="supplier_name"
+                                    class="form-control"
+                                    name="supplier_name"
+                                    required = "true"
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nameWithTitle" class="form-label">Address</label>
+                                <input
+                                    type="text"
+                                    id="supplier_address"
+                                    class="form-control"
+                                    name="supplier_address"
+                                    required = "true"
+                                />
+                            </div>
+
+                            <div class="mb-3">
+                                <label for="nameWithTitle" class="form-label">Phone</label>
+                                <input
+                                    type="text"
+                                    id="supplier_phone"
+                                    class="form-control"
+                                    name="supplier_phone"
+                                    required = "true"
+                                />
+                            </div>                
+                        </div>              
+                        <div class="modal-footer">
+                        
+                            <button type="submit" class="btn btn-primary"> Save</button>
+                        </div>
+                    </div>
+                </form>
           </div>
         </div>
-      </div>
+    </div>
 
-
-      <table class="table table-hover">
+      <table class="table table-hover" id = "table" data-filter-control="true" data-show-search-clear-button="true">
         <thead>
-          <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Item Group</th>
-            <th>Max Qty</th>
-            <th>Reorder Qty </th>
-            <th>Shelf No. </th>
-            <th>Status</th>
-            <th>Created By</th>
+          <tr id='tableHeader'>
+            <th>Item Name</th>
+            <th>Quantity</th>
+            <th>Unit Cost</th>
+            <th>Total Cost</th>
             <th>Date Created</th>
+            <th>Created By</th>
             <th>Actions</th>
           </tr>
         </thead>
         <tbody class="table-border-bottom-0">
-            {% for row in stock %}
-
+            {% for supplier in all_suppliers %}
             <tr>
-                <td>{{row.id}}</td>
-                <td>{{row.name}}</td>
-                <td>{{row.item_class}}</td>
-                <td>{{row.maximum_quantity}}</td>
-                <td>{{row.reorder_quantity}}</td>
-                <td>{{row.shelf_number}}</td>
-                <td>{{row.status}}</td>
-                <td>{{row.created_by}}</td>
-                <td>{{row.created_at}}</td>
+                <td>{{supplier.name}}</td>
+                <td>{{supplier.address}}</td>
+                <td>{{supplier.phone}}</td>
+                <td>{{supplier.created_by}}</td>
+                <td>{{supplier.created_at}}</td>
                 <td>
                     <span class = "mr-3">
-                    <a href = ""><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href = ""><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href = "{% url 'update-supplier' supplier.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href = "{% url 'delete-supplier' supplier.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                     </span>
                 </td>
             </tr>
@@ -180,6 +189,7 @@
   </div>
   </div>
   </div>
+  
 
   {% endblock %}
 

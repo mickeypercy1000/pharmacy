@@ -59,3 +59,13 @@ def updateCustomer(request, customer_id):
 
     return render(request, 'updateCustomer.html', context)
 
+
+def deleteCustomer(request, customer_id):
+    print('deleteCustomer')
+    customer = Customer.objects.filter(id=customer_id).first()
+
+    if request.method == 'POST': 
+        customer.delete()
+        return redirect('customers')
+    return render(request, 'deleteCustomer.html')
+

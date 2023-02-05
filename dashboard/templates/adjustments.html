@@ -1,0 +1,90 @@
+{% include 'base.html' %}
+
+{% load static %}
+
+{% block content %}
+
+<div class="content-wrapper">
+ <!-- Content -->
+<div class="container-xxl flex-grow-1 container-p-y">
+<h4 class="fw-bold py-3 mb-4"><span class="text-muted fw-light">Stock /</span> Adjust Stock Quantity</h4>
+
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCenterTitle">Adjust Quantity</h5>
+                    
+                </div>
+                <form method = 'POST' action="">
+                    {% csrf_token %}
+                    <div class="modal-body">
+                        <div class="row">
+                            <div class="mb-3">
+                                <label for="exampleDataList" class="form-label">Search Item</label>
+                                <input
+                                class="form-control"
+                                list="datalistOptions"
+                                id="exampleDataList"
+                                name = "search_item_name"
+                                placeholder="Type to search..."
+                                required = "true"
+                                />
+                                
+                                <datalist id="datalistOptions" class = "mb-2">
+                                {% for item in all_stock %}
+                                <option class = "mb-2" value="{{ item.name }}">{{ item.name }}</option>
+                                {% endfor %}
+                                </datalist>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Current Quantity</label>
+                                <input
+                                type="number"
+                                id="nameWithTitle"
+                                class="form-control"
+                                name="current_quantity"
+                                disabled = "true"
+                                value = {{search_item_name.quantity}}
+                                />
+                            </div>
+                            <div class="col mb-3">
+                                <label for="nameWithTitle" class="form-label">Set New Quantity</label>
+                                <input
+                                type="number"
+                                id="nameWithTitle"
+                                class="form-control"
+                                placeholder="Enter a quantity"
+                                name="new_quantity"
+                                required = "true"
+                                />
+                            </div>
+                        </div>
+                      
+                        <div class="row">
+                          <div>
+                            <label for="exampleFormControlTextarea1" class="form-label">Reason for adjustment</label>
+                            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" placeholder="Enter reason for this adjustment" required = "true" name = "reason_for_adjustment"></textarea>
+                          </div>
+                        </div>
+                        
+                        <div class="modal-footer mt-3">
+                        
+                            <a href = "{% url 'stock' %}" class="btn btn-outline-dark"> Back</a>
+                            <button type="submit" class="btn btn-primary"> Update</button>
+                        </div>
+                    </div>
+                </form>
+          </div>
+        </div>
+
+  {% endblock %}
+
+  {% include 'footer.html' %}
+  <!-- / Footer -->
+
+{% include 'extraCode.html' %}
+
+{% include 'scripts.html' %}
