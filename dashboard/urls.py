@@ -12,9 +12,9 @@ urlpatterns = [
     path('sales/', sales, name = 'sales'),
 
     path('stock/', stock, name = 'stock'),
+    path('add-stock/', addStock, name = 'add-stock'),
     path('update-stock/<str:stock_id>/', updateStock, name = 'update-stock'),
     path('delete-stock/<str:stock_id>/', deleteStock, name = 'delete-stock'),
-    path('add-stock/', addStock, name = 'add-stock'),
 
     path('suppliers/', suppliers, name = 'suppliers'),
     path('update-supplier/<str:supplier_id>/', updateSupplier, name = 'update-supplier'),

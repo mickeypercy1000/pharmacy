@@ -122,7 +122,7 @@
                   </div>
                   <div class="modal-footer">        
                     <button type="submit" class="btn btn-primary" id="showToastPlacement"> Save</button>
-                    <button type="submit" class="btn btn-primary" id="showToastPlacement"> Save and add another</button>                  
+                    {% comment %} <button type="submit" class="btn btn-primary" id="showToastPlacement"> Save and add another</button>                   {% endcomment %}
                   </div>
                 </div>
             </form>
@@ -168,10 +168,10 @@
                 <td>{{row.created_at}}</td>
                 <td>
                   <span class = "mr-3">
-                    <a href = "{% url 'update-stock' stock.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
                     {% comment %} <a href = "{% url 'update-stock' stock.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a> {% endcomment %}
+
                     {% comment %} <a href = "{% url 'delete-stock' stock.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a> {% endcomment %}
-                    </span>
+                  </span>
                 </td>
           </tr>
           {% endfor %}

@@ -1,4 +1,6 @@
+import datetime
 import re
+from types import new_class
 from django.shortcuts import get_object_or_404, redirect, render
 from django.db.models import Q
 from stocks.models import ExpiryAlert, ItemClass, Stock, StockAdjustment
@@ -117,9 +119,10 @@ def addStock(request):
 
 
 def updateStock(request, stock_id):
-
-    print("hiiiiiiii")
     stock = get_object_or_404(Stock, id=stock_id)
+    print(stock.expiry_date)
+    all_drug_class = ItemClass.objects.all().exclude(name=stock.item_class)
+    print(stock.expiry_date)
     if request.method == 'POST':
         item_name = request.POST.get('item_name')
         item_class = request.POST.get('select_item_group')
@@ -132,10 +135,22 @@ def updateStock(request, stock_id):
         shelf_number = request.POST.get('shelf_number')
         status = request.POST.get('select_item_status')
 
-        if item_name is not None and item_class is not None and maximum_quantity is not None and reorder_quantity is not None and quantity is not None and expiry_date is not None and selling_price is not None and cost_price is not None and shelf_number is not None and status is not None:
+        new_item = ItemClass.objects.filter(name=item_class).first()
+        if (
+            item_name is not None and
+            item_class is not None and
+            maximum_quantity is not None and
+            reorder_quantity is not None and
+            quantity is not None and
+            expiry_date is not None and
+            selling_price is not None and
+            cost_price is not None and
+            shelf_number is not None and 
+            status is not None
+            ):
             Stock.objects.filter(id=stock_id).update(
                 name=item_name,
-                item_class = item_class,
+                item_class = new_item,
                 maximum_quantity=maximum_quantity,
                 reorder_quantity=reorder_quantity,
                 quantity=quantity,
@@ -145,9 +160,9 @@ def updateStock(request, stock_id):
                 shelf_number=shelf_number,
                 status=status,
             )
-        return redirect('stock')
+            return redirect('stock')
 
-    context = {'stock': stock}
+    context = {'stock': stock, 'all_drug_class': all_drug_class}
 
     return render(request, 'updateStock.html', context)
 

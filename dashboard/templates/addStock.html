@@ -75,6 +75,7 @@
                                 class="form-control"
                                 placeholder="Enter a quantity"
                                 name="item_quantity"
+                                required = "true"
                                 />
                             </div>
                             <div class="col mb-3">
@@ -85,6 +86,7 @@
                                 class="form-control"
                                 placeholder="select expiry date"
                                 name="expiry_date"
+                                required = "true"
                                 />
                             </div>
                         </div>
@@ -97,6 +99,7 @@
                                 class="form-control"
                                 placeholder="selling price"
                                 name="selling_price"
+                                required = "true"
                                 />
                             </div>
                             <div class="col mb-3">
@@ -107,6 +110,7 @@
                                 class="form-control"
                                 placeholder="cost price"
                                 name="cost_price"
+                                required = "true"
                                 />
                             </div>
                           
@@ -121,6 +125,7 @@
                               class="form-control"
                               placeholder="Enter shelf number"
                               name="shelf_number"
+                              required = "true"
                             />
                           </div>
                         </div>
@@ -138,7 +143,7 @@
                     <div class="modal-footer mt-3">
                         
                         <a href = "{% url 'stock' %}" class="btn btn-outline-dark"> Back to stock</a>
-                        <button type="submit" class="btn btn-primary"> Update</button>
+                        <button type="submit" class="btn btn-primary"> Save</button>
                     </div>
                 </form>
             </div>

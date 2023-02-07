@@ -10,11 +10,17 @@ def allSales(request):
     return render(request, 'sales.html', context)
 
 
+@api_view(["GET"])
 def salesDetails(request, id):
     stock = Stock.objects.filter(id=id).first()
-    return Response({
-        "item_name": stock.name,
-        "item_price": stock.price,
-        "item_name": stock.name,
-        "item_name": stock.name,
-    })
+    if stock is None:
+        return Response({
+            "item_name": stock.name,
+            "item_price": stock.price,
+            "item_name": stock.name,
+            "item_name": stock.name,
+        })
+    else:
+        return Response({
+            "response":"stock item does not exist"
+        })

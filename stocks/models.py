@@ -24,11 +24,11 @@ class Stock(models.Model):
     )
     name = models.CharField(max_length=250)
     item_class = models.ForeignKey(ItemClass, on_delete = models.CASCADE, max_length=20, null = True, blank = True, default=None)
-    maximum_quantity = models.IntegerField(null = True, blank = True, default=None)
-    reorder_quantity = models.IntegerField(null = True, blank = True, default=None)
-    quantity = models.IntegerField(null = True, blank = True, default=None)
-    selling_price = models.DecimalField(max_digits = 10, decimal_places =2, null = True, blank = True, default=None)
-    cost_price = models.DecimalField(max_digits = 10, decimal_places =2, null = True, blank = True, default=None)
+    maximum_quantity = models.IntegerField(default=0)
+    reorder_quantity = models.IntegerField(default=0)
+    quantity = models.IntegerField(null = True, blank = True, default=0)
+    selling_price = models.DecimalField(max_digits = 10, decimal_places =2, default=0.00)
+    cost_price = models.DecimalField(max_digits = 10, decimal_places =2, default=0.00)
     shelf_number = models.CharField(max_length=20, null = True, blank = True, default=None)
     expiry_date = models.DateField(null = True, blank = True)
     status = models.CharField(choices=Status, max_length=20, null = True, blank = True, default=None)
@@ -38,7 +38,7 @@ class Stock(models.Model):
     created_by = models.ForeignKey(User, blank=True, null=True, on_delete = models.SET_NULL)
 
     def __str__(self):
-        return self.name
+        return f"{self.name} {self.id}"
 
     class Meta:
         ordering = ('name',)
@@ -55,7 +55,7 @@ class ExpiryAlert(models.Model):
         return self.expiry_alert + ' month(s)'
 
     class Meta:
-        ordering = ('-expiry_alert',)
+        ordering = ('-updated_at', 'created_at')
 
 
 

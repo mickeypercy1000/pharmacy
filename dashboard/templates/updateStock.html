@@ -35,7 +35,7 @@
                         <div class="mb-3">
                             <label for="defaultSelect" class="form-label">Select Item Group</label>
                             <select id="defaultSelect" class="form-select" name = "select_item_group" required = "true" value = "{{stock.item_class}}">
-                                <option>Default select</option>
+                                <option>{{ stock.item_class }}</option>
                                 {% for classes in all_drug_class %}
                                 <option value="{{ classes.name }}">{{ classes.name }}</option>
                                 {% endfor %}
@@ -149,7 +149,7 @@
                         </div>
                         
                     </div>
-                    <div class="modal-footer mt-3">
+                    <div class="modal-footer">
                         
                         <a href = "{% url 'stock' %}" class="btn btn-outline-dark"> Back to stock</a>
                         <button type="submit" class="btn btn-primary"> Update</button>
