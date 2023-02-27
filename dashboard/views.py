@@ -9,5 +9,6 @@ def dashboard(request):
 
 
 def sales(request):
+    print("hiiiii")
     return render(request, 'sales.html')
 

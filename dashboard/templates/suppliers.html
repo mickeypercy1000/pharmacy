@@ -15,8 +15,38 @@
         <div class = "row">
             <div class="col-md-5">
                 <button type="button" class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#modalAddSupplier"><b>+</b> Add new supplier</button>
-                
+                <button
+                  type="button"
+                  class="btn btn-primary dropdown-toggle"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                >
+                <i class="bx bx-calendar"></i> Date Filter
+                </button>
+                <div class="dropdown-menu dropdown-menu-end w-px-300">
+                    <form class="p-4" method = 'POST' action="">
+                        {% csrf_token %}
+                        <div class="mb-3 row">
+                            <label for="html5-date-input" class="col-md-2 col-form-label">From: </label>
+                            <div class="col-md-10">
+                            <input class="form-control" type="date" required="true" name = "fromDate" id="html5-date-input" />
+                            </div>
+                        </div>
+                        <div class="mb-3 row">
+                            <label for="html5-date-input" class="col-md-2 col-form-label">To: </label>
+                            <div class="col-md-10">
+                            <input class="form-control" type="date" required="true" name = "toDate" id="html5-date-input" />
+                            </div>
+                        </div>
+                        <div class="mb-2 row p-3 mt-2">
+                            <button type="submit" class="btn btn-secondary">Search</button>
+                        </div>
+                        
+                    </form>
+                </div>
             </div>
+           
             <div class="col-md-3">
                 <div class="btn-group m-4" role="group" aria-label="Basic example">
                     <button type="button" class="btn btn-outline-secondary" id = "exportTableXlsx" >Excel</button>
@@ -40,7 +70,9 @@
                         class="btn-close m-4"
                         data-bs-dismiss="modal"
                         aria-label="Close"
-                    ></button>
+                    >
+                    </button>
+                    
                 </div>
                 <form method = 'POST' action="">
                     {% csrf_token %}
