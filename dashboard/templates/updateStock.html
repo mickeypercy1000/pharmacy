@@ -13,25 +13,26 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title" id="modalCenterTitle">Update Stock</h5>
-                    
                 </div>
                 <form method = 'POST' action="">
                     {% csrf_token %}
                     <div class="modal-body">
+
                         <div class="row">
                             <div class="col mb-3">
-                                <label for="nameWithTitle" class="form-label">Name</label>
-                                <input
+                              <label for="nameWithTitle" class="form-label">Name</label>
+                              <input
                                 type="text"
                                 id="nameWithTitle"
                                 class="form-control"
-                                placeholder="Enter Name"
+                                placeholder="Enter item  name"
                                 name="item_name"
-                                required = "true"
-                                value = {{stock.name}}
-                                />
+                                required="true"
+                                value = "{{ stock.name }}"
+                              />
                             </div>
                         </div>
+
                         <div class="mb-3">
                             <label for="defaultSelect" class="form-label">Select Item Group</label>
                             <select id="defaultSelect" class="form-select" name = "select_item_group" required = "true" value = "{{stock.item_class}}">
@@ -89,9 +90,9 @@
                                 type="date"
                                 id="nameWithTitle"
                                 class="form-control"
-                                placeholder="select expiry date"
+                                {% comment %} placeholder="select expiry date" {% endcomment %}
                                 name="expiry_date"
-                                value = "{{ stock.expiry_date }}"
+                                value = "{{ stock.expiry_date|date:"Y-m-d" }}"
 
                                 />
                             </div>

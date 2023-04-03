@@ -1,9 +1,17 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import uuid
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Supplier(models.Model):
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
+    )
     name = models.CharField(max_length=100, null=True, blank=True)
     address = models.CharField(max_length=100)
     phone = models.CharField(max_length=20)

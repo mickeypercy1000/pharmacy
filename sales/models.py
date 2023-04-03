@@ -2,6 +2,8 @@ from django.db import models
 
 from stocks.models import Stock
 from django.contrib.auth.models import User
+import uuid
+from django.utils.translation import gettext_lazy as _
 
 # Create your models here.
 class Sales(models.Model):
@@ -9,6 +11,13 @@ class Sales(models.Model):
     STATUS = (
         ('Cash', 'cash'),
         ('Credit', 'credit'),
+    )
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
     )
 
     item_name = models.ManyToManyField(Stock)

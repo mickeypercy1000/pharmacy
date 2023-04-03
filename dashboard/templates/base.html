@@ -19,7 +19,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Mophyl</title>
+    <title>Dev Struck</title>
 
     <meta name="description" content="" />
 
@@ -72,7 +72,8 @@
 
         <aside id="layout-menu" class="layout-menu menu-vertical menu bg-menu-theme">
           <div class="app-brand demo">
-            <a href="index.html" class="app-brand-link">
+            <h2>Dev Struck</h2>
+            {% comment %} <a href="index.html" class="app-brand-link">
               <span class="app-brand-logo demo">
                 <svg
                   width="25"
@@ -128,8 +129,8 @@
                   </g>
                 </svg>
               </span>
-              <span class="app-brand-text demo menu-text fw-bolder ms-2">Mophyl</span>
-            </a>
+              <span class="app-brand-text demo menu-text fw-bolder ms-2" href="{% url 'home' %}">Dev Struck</span>
+            </a> {% endcomment %}
 
             <a href="javascript:void(0);" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
               <i class="bx bx-chevron-left bx-sm align-middle"></i>
@@ -356,7 +357,7 @@
             <li class="menu-item">
               <a href="{% url 'sales' %}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">Settings</div>
+                <div data-i18n="Basic">User Management</div>
               </a>
             </li>
             <li class="menu-item">
@@ -446,13 +447,7 @@
               <!-- Search -->
               <div class="navbar-nav align-items-center">
                 <div class="nav-item d-flex align-items-center">
-                  <i class="bx bx-search fs-4 lh-0"></i>
-                  <input
-                    type="text"
-                    class="form-control border-0 shadow-none"
-                    placeholder="Search..."
-                    aria-label="Search..."
-                  />
+                  
                 </div>
               </div>
               <!-- /Search -->
@@ -500,21 +495,6 @@
                       <a class="dropdown-item" href="#">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <i class="bx bx-cog me-2"></i>
-                        <span class="align-middle">Settings</span>
-                      </a>
-                    </li>
-                    <li>
-                      <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
                       </a>
                     </li>
                     <li>

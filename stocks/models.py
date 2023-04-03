@@ -1,8 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+import uuid
+from django.utils.translation import gettext_lazy as _
 # Create your models here.
 class ItemClass(models.Model):
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
+    )
     name = models.CharField(max_length=250, null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     created_by = models.ForeignKey(User, on_delete=models.DO_NOTHING, null=True, blank=True)
@@ -21,6 +29,13 @@ class Stock(models.Model):
     Status = (
         ('active', 'Active'),
         ('inactive', 'Inactive')
+    )
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
     )
     name = models.CharField(max_length=250)
     item_class = models.ForeignKey(ItemClass, on_delete = models.CASCADE, max_length=20, null = True, blank = True, default=None)
@@ -45,6 +60,13 @@ class Stock(models.Model):
 
 
 class ExpiryAlert(models.Model):
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
+    )
     expiry_alert = models.CharField(max_length = 30, null = True, blank = True)
     created_at = models.DateTimeField(auto_now_add=True, null = True, blank = True)
     updated_at = models.DateTimeField(auto_now = True, null = True, blank = True)
@@ -60,6 +82,13 @@ class ExpiryAlert(models.Model):
 
 
 class StockAdjustment(models.Model):
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
+    )
     name = models.ForeignKey(Stock, on_delete = models.DO_NOTHING, related_name = 'stock_adjustments')
     current_quantity = models.ForeignKey(Stock, on_delete =models.DO_NOTHING, related_name = 'old_quantity')
     new_quantity = models.ForeignKey(Stock, on_delete =models.DO_NOTHING, related_name = 'new_quantity')

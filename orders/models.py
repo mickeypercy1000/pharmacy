@@ -3,9 +3,21 @@ from stocks.models import Stock
 from suppliers.models import *
 from django.contrib.auth.models import User
 from suppliers.models import Supplier
+import uuid
+from django.utils.translation import gettext_lazy as _
+
+
+# Create your models here. 
 
 # Create your models here.
 class PurchaseOrder(models.Model):
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
+    )
 
     orderType = (
         ('cash','Cash'),
@@ -27,7 +39,15 @@ class PurchaseOrder(models.Model):
 class receivedOrder(models.Model):
     orderStatus = (
         ('pending','Pending'),
-        ('received','Received')
+        ('received','Received'),
+        ('cancelled','Cancelled'),
+    )
+    id = models.CharField(
+        _("id"),
+        max_length=50,
+        default=uuid.uuid4,
+        unique=True,
+        primary_key=True,
     )
     order = models.ForeignKey(PurchaseOrder, on_delete=models.DO_NOTHING, related_name="received_order")
     item = models.CharField(max_length=20)

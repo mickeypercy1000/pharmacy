@@ -119,8 +119,9 @@ def addStock(request):
 
 
 def updateStock(request, stock_id):
+    print('here now')
     stock = get_object_or_404(Stock, id=stock_id)
-    print(stock.expiry_date)
+    print("nnnnnmnmnnmnm", stock.name)
     all_drug_class = ItemClass.objects.all().exclude(name=stock.item_class)
     print(stock.expiry_date)
     if request.method == 'POST':
@@ -166,5 +167,10 @@ def updateStock(request, stock_id):
 
     return render(request, 'updateStock.html', context)
 
-def deleteStock(request):
+def deleteStock(request, stock_id):
+    stock = get_object_or_404(Stock, id=stock_id)
+    if stock:
+        if request.method == 'POST': 
+            stock.delete()
+            return redirect('stock')
     return render(request, 'deleteStock.html')

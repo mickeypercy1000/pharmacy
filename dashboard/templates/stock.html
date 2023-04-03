@@ -138,15 +138,15 @@
             <th>Name</th>
             <th>Quantity </th>
             <th>Item Group</th>
-            <th>Max Qty</th>
-            <th>Reorder Qty </th>
+            {% comment %} <th>Max Qty</th>
+            <th>Reorder Qty </th> {% endcomment %}
             <th>Selling Price </th>
-            <th>Cost Price </th>
+            {% comment %} <th>Cost Price </th> {% endcomment %}
             <th>Expiry Date </th>
             <th>Shelf No. </th>
-            <th>Status</th>
+            {% comment %} <th>Status</th>
             <th>Created By</th>
-            <th>Date Created</th>
+            <th>Date Created</th> {% endcomment %}
             <th>Actions</th>
           </tr>
         </thead>
@@ -157,20 +157,19 @@
                 <td>{{row.name}}</td>
                 <td>{{row.quantity}}</td>
                 <td>{{row.item_class}}</td>
-                <td>{{row.maximum_quantity}}</td>
-                <td>{{row.reorder_quantity}}</td>
+                {% comment %} <td>{{row.maximum_quantity}}</td> {% endcomment %}
+                {% comment %} <td>{{row.reorder_quantity}}</td> {% endcomment %}
                 <td>{{row.selling_price}}</td>
-                <td>{{row.cost_price}}</td>
+                {% comment %} <td>{{row.cost_price}}</td> {% endcomment %}
                 <td>{{row.expiry_date}}</td>
                 <td>{{row.shelf_number}}</td>
-                <td>{{row.status}}</td>
-                <td>{{row.created_by}}</td>
-                <td>{{row.created_at}}</td>
+                {% comment %} <td>{{row.status}}</td> {% endcomment %}
+                {% comment %} <td>{{row.created_by}}</td> {% endcomment %}
+                {% comment %} <td>{{row.created_at}}</td> {% endcomment %}
                 <td>
                   <span class = "mr-3">
-                    {% comment %} <a href = "{% url 'update-stock' stock.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a> {% endcomment %}
-
-                    {% comment %} <a href = "{% url 'delete-stock' stock.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a> {% endcomment %}
+                    <a href = "{% url 'update-stock' row.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
+                    <a href = "{% url 'delete-stock' row.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
                   </span>
                 </td>
           </tr>
