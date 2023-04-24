@@ -8,7 +8,7 @@ from customers.views import customers, deleteCustomer, updateCustomer
 
 urlpatterns = [
 
-    path('home/', dashboard, name = 'home'),
+    path('', dashboard, name = 'home'),
     path('sales/', sales, name = 'sales'),
 
     path('stock/', stock, name = 'stock'),

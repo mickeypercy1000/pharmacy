@@ -21,7 +21,6 @@ def customers(request):
         id_card_number = request.POST.get('id_card_number')
 
         if customer_name is not None and customer_address is not None and customer_phone is not None and id_card_number is not None:
-            print("passed")
             check_uniqueness = Customer.objects.filter(id_card_number=id_card_number).first()
             if check_uniqueness is None:
                 customer = Customer.objects.create(

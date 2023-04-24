@@ -1,5 +1,7 @@
 /migrations
 .migrations
 migrations
-
+.venv
+venv
+/venv
 .gitignore
