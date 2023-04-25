@@ -5,3 +5,11 @@ migrations
 venv
 /venv
 .gitignore
+sneat-folder
+.sneat-folder
+sneat-folder/
+/sneat-folder
+staticfiles_build
+.staticfiles_build
+staticfiles_build/
+/staticfiles_build
