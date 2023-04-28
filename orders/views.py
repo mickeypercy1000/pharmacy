@@ -3,6 +3,6 @@ from django.shortcuts import render
 from orders.models import PurchaseOrder
 
 # Create your views here.
-def purchaseOrder(request):
+def purchaseOrderView(request):
 
     return render(request, "purchaseOrders.html")

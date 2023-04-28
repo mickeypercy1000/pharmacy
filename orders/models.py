@@ -1,5 +1,5 @@
 from django.db import models
-from stocks.models import Stock
+from stock.models import Stock
 from suppliers.models import *
 from django.contrib.auth.models import User
 from suppliers.models import Supplier

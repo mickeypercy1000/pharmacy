@@ -15,12 +15,12 @@
     <div class = "row">
         <div class="col-md-5">
             <button type="button" class="btn btn-primary m-4" data-bs-toggle="modal" data-bs-target="#modalAddCustomer"><b>+</b> Add new customer</button>
-            <button
-                  type="button"
-                  class="btn btn-primary dropdown-toggle"
-                  data-bs-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"
+                <button
+                    type="button"
+                    class="btn btn-primary dropdown-toggle"
+                    data-bs-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"
                 >
                 <i class="bx bx-calendar"></i> Date Filter
                 </button>
@@ -39,10 +39,9 @@
                             <input class="form-control" type="date" required="true" name = "toDate" id="html5-date-input" />
                             </div>
                         </div>
-                        <div class="mb-2 row p-3 mt-2">
+                        <div class="row p-3 mt-2">
                             <button type="submit" class="btn btn-secondary">Search</button>
-                        </div>
-                        
+                        </div>       
                     </form>
                 </div>
         </div>
@@ -163,8 +162,8 @@
                 <td>{{customer.created_at}}</td>
                 <td>
                     <span class = "mr-3">
-                    <a href = "{% url 'update-customer' customer.id %}"><i class="fa fa-pencil" aria-hidden="true"></i></a>
-                    <a href = "{% url 'delete-customer' customer.id %}"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                    <a href = "{% url 'update-customer' customer.id %}"><i class="fa fa-pencil fa-md" aria-hidden="true"></i></a>
+                    <a href = "{% url 'delete-customer' customer.id %}"><i class="fa fa-trash fa-md m-2" aria-hidden="true"></i></a>
                     </span>
                 </td>
             </tr>

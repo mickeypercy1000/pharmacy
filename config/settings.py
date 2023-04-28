@@ -42,11 +42,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'dashboard',
     'customers',
-    'stocks',
+    'stock',
     'suppliers',
     'orders',
     'sales',
-    # 'dashboard',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -84,22 +84,22 @@ WSGI_APPLICATION = 'config.wsgi.application'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
 DATABASES = {
-    'default': {
+    # 'default': {
 
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'URL': config('POSTGRES_URL'),
-        'NAME': config('PGNAME'),
-        'USER': config('PGUSER'),
-        'PASSWORD': config('POSTGRES_PASSWORD'),
-        'HOST': config('PGHOST'),
-        'PORT': config('PGPORT'),
-    }
-
-
-    #  'default': {
-    #     'ENGINE': 'django.db.backends.sqlite3',
-    #     'NAME': BASE_DIR / 'db.sqlite3',
+    #     'ENGINE': 'django.db.backends.postgresql_psycopg2',
+    #     'URL': config('POSTGRES_URL'),
+    #     'NAME': config('PGNAME'),
+    #     'USER': config('PGUSER'),
+    #     'PASSWORD': config('POSTGRES_PASSWORD'),
+    #     'HOST': config('PGHOST'),
+    #     'PORT': config('PGPORT'),
     # }
+
+
+     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
 }
 
 

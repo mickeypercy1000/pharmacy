@@ -9,8 +9,7 @@ from suppliers.models import Supplier
 
 def suppliers(request):
 
-    # all_suppliers = Supplier.objects.all()
-    # if request.method == 'POST':
+
     all_suppliers = ""
 
     if (

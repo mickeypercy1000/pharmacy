@@ -1,6 +1,6 @@
 from django.db import models
 
-from stocks.models import Stock
+from stock.models import Stock
 from django.contrib.auth.models import User
 import uuid
 from django.utils.translation import gettext_lazy as _
