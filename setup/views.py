@@ -19,6 +19,7 @@ def expiry_setup(request):
 
 
 def item_class_setup(request):
+    item_class = None
     
     if request.method == 'POST' and request.POST.get('new_item_class') is not None:
         new_item_class = request.POST.get('new_item_class')

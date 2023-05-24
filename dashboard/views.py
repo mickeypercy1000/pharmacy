@@ -33,8 +33,3 @@ def dashboard(request):
         }
     return render(request, 'home.html', context)
 
-
-def sales(request):
-    print("hiiiii")
-    return render(request, 'sales.html')
-

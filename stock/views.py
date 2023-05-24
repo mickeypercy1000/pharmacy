@@ -7,6 +7,9 @@ from stock.models import ExpiryAlert, ItemClass, Stock, StockAdjustment
 from suppliers.models import Supplier
 from django.contrib import messages
 
+from stock.serializers import AllStockSerializer
+from stock.models import Stock
+from rest_framework import generics, permissions
 
 # Create your views here.
 
@@ -176,3 +179,9 @@ def deleteStock(request, stock_id):
             stock.delete()
             return redirect('stock')
     return render(request, 'deleteStock.html')
+
+
+class AllStockAPI(generics.ListAPIView):
+    # permission_classes = (permissions.IsAuthenticated,)
+    queryset = Stock.objects.all()
+    serializer_class = AllStockSerializer
